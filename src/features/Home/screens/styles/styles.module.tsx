@@ -18,7 +18,10 @@ export const styles = StyleSheet.create(
             marginTop: 14,
             backgroundColor: '#030606',
             padding: 14,
+            paddingRight: 30,
+            paddingLeft: 30,
             borderRadius: 12,
+            height: 100
         },
         title:{
             fontSize: 24,
@@ -26,7 +29,7 @@ export const styles = StyleSheet.create(
             color: '#fff'
         },
         cartButtton:{
-            
+
         },
         dot:{
             backgroundColor: 'red',
@@ -45,6 +48,9 @@ export const styles = StyleSheet.create(
             fontSize: 12,
             color: '#fff',
             fontWeight: 'bold'
+        },
+        list:{
+            marginBottom: 33
         }
     }
 )
