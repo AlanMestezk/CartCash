@@ -12,11 +12,35 @@ export const Home = () => {
     const navigation = useNavigation()
 
    const [product, setProducts] = useState(Products)
+   const [numberItemCart, setNumberItemCart] = useState(0)
+   const [isTrueItemToCart, setIsTrueItemToCart] = useState(false)
 
     const handleNavigateToCart =()=>{
         //@ts-ignore
         navigation.navigate('Cart')
     }
+
+    const handleIsTrueItemToCart =()=>{
+
+        if(numberItemCart  > 0){
+            setIsTrueItemToCart(true)
+        }
+    }
+
+    const handleAddItemToCart = ()=>{
+
+       setNumberItemCart((prev) => {
+            const newValue = prev + 1
+
+            if (newValue > 0) {
+                setIsTrueItemToCart(true)
+                console.log(newValue)
+            }
+
+            return newValue
+        })
+    }
+
 
     return(
         <View style= {styles.container}>
@@ -27,11 +51,19 @@ export const Home = () => {
 
                 <TouchableOpacity style={styles.cartButtton} onPress={handleNavigateToCart}>
 
-                    <View style={styles.dot}>
+                    {
+                        isTrueItemToCart ? (
+                            <View style={styles.dot}>  
 
-                        <Text style={styles.dotText}>3</Text>
+                                <Text style={styles.dotText}>{numberItemCart}</Text>
 
-                    </View>
+                            </View>
+
+                        ):(
+                            <></>
+                        )
+                    }
+
 
                     <Feather name="shopping-cart" size={35} color="#fff" />
 
@@ -45,7 +77,7 @@ export const Home = () => {
                     data={product}
                     keyExtractor={(item) => String(item.id)}
                     renderItem={
-                        ({item})=> <ProductItem data={item}/>
+                        ({item})=> <ProductItem data={{...item, addItemToCart: handleAddItemToCart}}/>
                     }
                 />
             </View>

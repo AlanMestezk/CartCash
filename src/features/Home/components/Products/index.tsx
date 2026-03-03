@@ -10,6 +10,7 @@ interface ProductItemProps{
         price: number;
         image: string;
         description: string;
+        addItemToCart: (item: any)=> void
     }
 }
 
@@ -47,7 +48,7 @@ export const ProductItem =({data}: ProductItemProps)=>{
 
             </View>
 
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity style={styles.button} onPress={data.addItemToCart}>
 
                 <Text style={styles.buttonText}> Add to cart+</Text>
 

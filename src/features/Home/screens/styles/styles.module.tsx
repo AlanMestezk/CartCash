@@ -5,10 +5,9 @@ export const styles = StyleSheet.create(
     {
         container:{
             flex:1,
-            backgroundColor: '#FAFAFA',
             paddingEnd: 14,
             paddingStart: 14,
-            marginTop: 55
+            marginTop: 22
         },
         cartContent:{
             flexDirection: 'row',
@@ -21,6 +20,7 @@ export const styles = StyleSheet.create(
             paddingRight: 30,
             paddingLeft: 30,
             borderRadius: 12,
+            width: '100%',
             height: 100
         },
         title:{
