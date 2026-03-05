@@ -2,20 +2,20 @@ import {View, Text, TouchableOpacity, Image} from 'react-native';
 import {styles} from './styles/styles.module'
 //@ts-ignore
 import {Feather} from '@expo/vector-icons'
+import { ProductProps } from '../../screens';
 
-interface ProductItemProps{
-    data:{
-        id: string;
-        name: string;
-        price: number;
-        image: string;
-        description: string;
-    }
+
+export interface CartItemProps extends ProductProps {
+  quantity: number
+}
+
+interface ProductItemProps {
+  data: ProductProps
+  addToCart: (item: ProductProps) => void
 }
 
 
-
-export const ProductItem =({data}: ProductItemProps)=>{
+export const ProductItem =({data, addToCart}: ProductItemProps)=>{
 
     return(
         
@@ -47,7 +47,7 @@ export const ProductItem =({data}: ProductItemProps)=>{
 
             </View>
 
-            <TouchableOpacity style={styles.button} >
+            <TouchableOpacity style={styles.button} onPress={()=>addToCart(data)}>
 
                 <Text style={styles.buttonText}> Add to cart+</Text>
 

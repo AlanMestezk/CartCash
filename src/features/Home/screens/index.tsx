@@ -7,10 +7,25 @@ import {useNavigation} from '@react-navigation/native'
 import {Feather} from '@expo/vector-icons'
 import { ProductItem } from "../components/Products"
 import { CartContext } from "../../../context/CartContext"
+import { CartContextProps } from "../../../context/CartContext"
+
+export interface ProductProps{
+    id: string
+    name: string
+    price: number
+    image: string
+    description: string
+    category: string
+}
+
+export interface CartItemProps extends ProductProps{
+    quantity: number
+}
+
 
 export const Home = () => {
     //@ts-ignore
-    const {cart} = useContext(CartContext)
+    const {cart, addIItemCart} = useContext(CartContext)
 
    const navigation = useNavigation()
 
@@ -22,6 +37,9 @@ export const Home = () => {
         navigation.navigate('Cart')
     }
 
+    const handleAddCart =(item: ProductProps)=>{
+        addIItemCart(item)
+    }
 
 
     return(
@@ -54,7 +72,7 @@ export const Home = () => {
                     data={product}
                     keyExtractor={(item) => String(item.id)}
                     renderItem={
-                        ({item})=> <ProductItem data={item}/>
+                        ({item})=> <ProductItem data={item} addToCart={handleAddCart}/>
                     }
                 />
             </View>
