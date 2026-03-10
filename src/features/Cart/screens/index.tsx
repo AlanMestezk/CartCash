@@ -11,25 +11,42 @@ export const Cart = () => {
     const {cart, addIItemCart, removeItemCart} = useContext(CartContext)
 
     return(
+
         <View style={styles.container}>
-            
-            <FlatList 
-                data={cart}
-                showsVerticalScrollIndicator={false}
-                keyExtractor={item => String(item.id)}
-                renderItem = {
-                    ({item}) =>(
-                        <CartItem
-                            name={item.name}
-                            image={item.image}
-                            price={item.price} 
-                            amount={item.amount}
-                            addAmount={()=> addIItemCart(item)}  
-                            removeAmount={() => removeItemCart(item.id)}                
-                        />
-                    )   
-                } 
-            />
+
+            {
+
+                cart.length > 0 ? 
+                (
+
+                    <FlatList 
+                        data={cart}
+                        showsVerticalScrollIndicator={false}
+                        keyExtractor={item => String(item.id)}
+                        renderItem = {
+                            ({item}) =>(
+                                <CartItem
+                                    name={item.name}
+                                    image={item.image}
+                                    price={item.price} 
+                                    amount={item.amount}
+                                    addAmount={()=> addIItemCart(item)}  
+                                    removeAmount={() => removeItemCart(item.id)}                
+                                />
+                            )   
+                        } 
+                    />
+
+                ):(
+
+                    <View style={styles.viewTitle}>
+
+                        <Text style={styles.title}>Your cart is empty</Text>
+
+                    </View>
+
+                )
+            }
 
         </View>
     )
