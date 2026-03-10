@@ -50,6 +50,29 @@ export const CartProvider = ({children}: CartProviderProps)=>{
         setCart([...cart, data])
     } 
 
+    const removeItemCart = (productId: string) => {
+
+  const indexItem = cart.findIndex(item => item.id === productId)
+
+  if (cart[indexItem]?.amount > 1) {
+
+    const cartList = [...cart]
+
+    cartList[indexItem] = {
+      ...cartList[indexItem],
+      amount: cartList[indexItem].amount - 1,
+      total: cartList[indexItem].total - cartList[indexItem].price
+    }
+
+    setCart(cartList)
+    return
+  }
+
+  const removeItem = cart.filter(item => item.id !== productId)
+
+  setCart(removeItem)
+}
+
 
     return(
         
@@ -57,7 +80,8 @@ export const CartProvider = ({children}: CartProviderProps)=>{
             value={
                 {
                     cart,
-                    addIItemCart
+                    addIItemCart,
+                    removeItemCart
                 }
             }
         >
