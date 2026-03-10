@@ -51,13 +51,23 @@ export const Home = () => {
 
                 <TouchableOpacity style={styles.cartButtton} onPress={handleNavigateToCart}>
 
-                <View style={styles.dot}>  
+                {
 
-                    <Text style={styles.dotText}>
-                        {cart?.length}
-                    </Text>
+                    cart?.length >=  1 ?
 
-                </View>
+                    <View style={styles.dot}>  
+
+                        <Text style={styles.dotText}>
+                            {cart?.length}
+                        </Text>
+
+                    </View>:
+                    <>  
+
+                       
+
+                    </>
+                }
 
 
                     <Feather name="shopping-cart" size={35} color="#fff" />
